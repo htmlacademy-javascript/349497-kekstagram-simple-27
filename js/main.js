@@ -1,28 +1,29 @@
-function getRandomRange(m, n){
-  if(isNaN(m / n)){
-    return NaN;
-  }else if (m < 0 || n < 0){
-    return NaN;
-  }else if (m % 1 !== 0 || n % 1 !== 0){
-    return NaN;
+function getRandomPositiveInteger (a, b) {
+    if (a < 0 || b < 0) {
+      return NaN;
+    }
+    const lower = Math.ceil(Math.min(a, b));
+    const upper = Math.floor(Math.max(a, b));
+    const result = Math.random() * (upper - lower + 1) + lower;
+    return Math.floor(result);
   }
-
-  m = Number(m);
-  n = Number(n);
-
-  let startNumber = m;
-  let endNumber = n;
-
-  if (startNumber > endNumber){
-    startNumber = n;
-    endNumber = m;
-  }else if (startNumber === endNumber){
-    return NaN;
-  }
-
-  return(Math.floor(Math.random() * (endNumber - startNumber)) + startNumber);
-}
 
 function isComformLength(checkedText, maxLength){
   return checkedText.length <= maxLength;
+}
+
+function getGenerateArrayObjects(quanty){
+    arrObj = []
+
+    for (let i=1; i<=quanty; i++){
+        arrObj.push({
+            id: i,
+            url: `photos/${i}.jpg`,
+            description: 'Occaecat labore Lorem est cillum ea sunt sunt duis commodo.',
+            likes: getRandomPositiveInteger(15,200),
+            comments: getRandomPositiveInteger(0,200),
+            })
+    }
+
+    return arrObj
 }
