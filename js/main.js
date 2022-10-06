@@ -12,6 +12,16 @@ function isComformLength(checkedText, maxLength){
   return checkedText.length <= maxLength;
 }
 
+const descriptionsArr = [
+    'Et ea anim aliqua excepteur ea ut incididunt cupidatat deserunt cillum eu ex ipsum labore.',
+    'Aliqua minim cupidatat veniam id reprehenderit consequat aliquip reprehenderit tempor sunt.',
+    'Anim eiusmod laborum culpa incididunt nisi id ex laboris irure consectetur.',
+    'Eu ea occaecat nulla aute deserunt nulla consectetur.',
+    'Ad anim laborum reprehenderit non irure non labore commodo aute veniam aliquip consectetur.',
+    'Eu Lorem in quis minim officia consequat nisi sint voluptate ex.',
+    'Excepteur occaecat adipisicing aliqua Lorem irure consequat commodo amet adipisicing quis veniam.'
+]
+
 function getGenerateArrayObjects(quanty){
     arrObj = []
 
@@ -19,7 +29,7 @@ function getGenerateArrayObjects(quanty){
         arrObj.push({
             id: i,
             url: `photos/${i}.jpg`,
-            description: 'Occaecat labore Lorem est cillum ea sunt sunt duis commodo.',
+            description: descriptionsArr[getRandomPositiveInteger(0, descriptionsArr.length-1)],
             likes: getRandomPositiveInteger(15,200),
             comments: getRandomPositiveInteger(0,200),
             })
