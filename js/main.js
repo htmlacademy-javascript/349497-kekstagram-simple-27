@@ -20,20 +20,21 @@ const descriptionsArr = [
   'Ad anim laborum reprehenderit non irure non labore commodo aute veniam aliquip consectetur.',
   'Eu Lorem in quis minim officia consequat nisi sint voluptate ex.',
   'Excepteur occaecat adipisicing aliqua Lorem irure consequat commodo amet adipisicing quis veniam.'
-]
+];
 
 function getGenerateArrayObjects(quanty){
-  arrObj = []
+  const arrObj = [];
 
-  for (let i=1; i<=quanty; i++){
+  for (let i = 1; i <= quanty; i++){
     arrObj.push({
       id: i,
       url: `photos/${i}.jpg`,
-      description: descriptionsArr[getRandomPositiveInteger(0, descriptionsArr.length-1)],
+      description: descriptionsArr[getRandomPositiveInteger(0, descriptionsArr.length - 1)],
       likes: getRandomPositiveInteger(15,200),
       comments: getRandomPositiveInteger(0,200),
-    })
+    });
   }
 
-  return arrObj
+  return arrObj;
 }
+
