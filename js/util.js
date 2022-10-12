@@ -1,5 +1,4 @@
-import {descriptionsArr} from './data.js';
-import {COMMENTS, LIKES} from './const.js';
+import {Comments, Likes, DESCRIPTIONS} from './const.js';
 
 
 function isComformLength(checkedText, maxLength){
@@ -23,9 +22,9 @@ function getGenerateArrayObjects(quanty){
     arrObj.push({
       id: i,
       url: `photos/${i}.jpg`,
-      description: descriptionsArr[getRandomPositiveInteger(0, descriptionsArr.length - 1)],
-      likes: getRandomPositiveInteger(LIKES.MIN, LIKES.MAX),
-      comments: getRandomPositiveInteger(COMMENTS.MIN, COMMENTS.MAX),
+      description: DESCRIPTIONS[getRandomPositiveInteger(0, DESCRIPTIONS.length - 1)],
+      likes: getRandomPositiveInteger(Likes.MIN, Likes.MAX),
+      comments: getRandomPositiveInteger(Comments.MIN, Comments.MAX),
     });
   }
 
