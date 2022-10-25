@@ -24,9 +24,9 @@ const getGenerateArrayObjects = (quanty) => {
       likes: getRandomPositiveInteger(Likes.MIN, Likes.MAX),
       comments: getRandomPositiveInteger(Comments.MIN, Comments.MAX),
     });
-  };
+  }
 
   return arrObj;
-}
+};
 
 export {isComformLength, getGenerateArrayObjects, isEscKey};
