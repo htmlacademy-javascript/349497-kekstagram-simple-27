@@ -1,26 +1,16 @@
-import { Scale } from './const.js';
+import {
+  closePopupBtn, scaleControls, effectsList, commentText, uploadForm, imgUploadPopup, body, uploadFileInput, imgUploadPreview
+} from './form-dom-element.js';
+import {onScaleControl} from './form-scale.js';
 import {validationComment} from './form-validation.js';
-
-const body = document.querySelector('body');
-const uploadForm = body.querySelector('#upload-select-image');
-const uploadFileInput = uploadForm.querySelector('#upload-file');
-const imgUploadPopup = uploadForm.querySelector('.img-upload__overlay');
-const closePopupBtn = body.querySelector('#upload-cancel');
-
-const scaleSmallerBtn = uploadForm.querySelector('.scale__control--smaller');
-const scaleBiggerBtn = uploadForm.querySelector('.scale__control--bigger');
-const scaleValue = uploadForm.querySelector('.scale__control--value');
-const imgUploadPreview = uploadForm.querySelector('.img-upload__preview img');
-const effectsList = uploadForm.querySelector('.effects__list');
-const defaultEffect = uploadForm.querySelector('#effect-none');
-const commentText = uploadForm.querySelector('.text__description');
+import {isEscKey} from './util.js';
+import {onChangeEffect, setDefaultEffect} from './form-effects.js';
 
 const listeners = [
-  {node: window, evt: 'keydown', func: isEscKey},
-  {node: closePopupBtn, evt: 'click', func: closePopup},
-  {node: scaleSmallerBtn, evt: 'click', func: scaleDriver},
-  {node: scaleBiggerBtn, evt: 'click', func: scaleDriver},
-  {node: effectsList, evt: 'change', func: addEffectImg},
+  {node: window, evt: 'keydown', func: onEscKey},
+  {node: closePopupBtn, evt: 'click', func: onCloseBtn},
+  {node: scaleControls, evt: 'click', func: onScaleControl},
+  {node: effectsList, evt: 'change', func: onChangeEffect},
   {node: commentText, evt: 'input', func: () => validationComment(uploadForm, commentText)},
   {node: uploadForm, evt: 'submit', func: (evt)=>{
     if (!validationComment(uploadForm, commentText)){
@@ -30,13 +20,12 @@ const listeners = [
 ];
 
 
-function isEscKey(evt){
-  if (evt.key === 'Escape'){
+function onEscKey(evt){
+  if (isEscKey(evt)){
     evt.preventDefault();
     closePopup();
   }
 }
-
 
 function showPopup(){
   imgUploadPopup.classList.remove('hidden');
@@ -53,33 +42,17 @@ function closePopup(){
     value.node.removeEventListener(value.evt, value.func);
   });
   uploadFileInput.value = '';
-  defaultEffect.checked = true;
-  imgUploadPreview.classList.remove(...imgUploadPreview.classList);
   imgUploadPreview.style.transform = '';
   commentText.value = '';
+  setDefaultEffect();
 }
 
-
-function scaleDriver(evt){
-  let value = parseInt(scaleValue.value, 10);
-  if (evt.target === scaleBiggerBtn){
-    if (value < Scale.MAX){
-      value += Scale.STEP;
-    }
-  }else{
-    if (value > Scale.MIN){
-      value -= Scale.STEP;
-    }
-  }
-  imgUploadPreview.style.transform = `scale(${value / 100})`;
-  scaleValue.value = `${value}%`;
+function onChangeFileInput(){
+  showPopup();
 }
 
-
-function addEffectImg(){
-  const effect = effectsList.querySelector('[name="effect"]:checked').value;
-  imgUploadPreview.classList.remove(...imgUploadPreview.classList);
-  imgUploadPreview.classList.add(`effects__preview--${effect}`);
+function onCloseBtn(){
+  closePopup();
 }
 
-uploadFileInput.addEventListener('change', showPopup);
+uploadFileInput.addEventListener('change', onChangeFileInput);

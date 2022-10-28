@@ -1,0 +1,14 @@
+export const body = document.querySelector('body');
+export const uploadForm = body.querySelector('#upload-select-image');
+export const uploadFileInput = uploadForm.querySelector('#upload-file');
+export const imgUploadPopup = uploadForm.querySelector('.img-upload__overlay');
+export const closePopupBtn = body.querySelector('#upload-cancel');
+export const scaleControls = uploadForm.querySelector('.img-upload__scale');
+export const imgUploadPreview = uploadForm.querySelector('.img-upload__preview img');
+export const effectsList = uploadForm.querySelector('.effects__list');
+export const defaultEffect = uploadForm.querySelector('#effect-none');
+export const commentText = uploadForm.querySelector('.text__description');
+export const scaleBiggerBtn = scaleControls.querySelector('.scale__control--bigger');
+export const scaleValue = scaleControls.querySelector('.scale__control--value');
+export const effectSlider = uploadForm.querySelector('.effect-level__slider');
+export const effectSliderValue = uploadForm.querySelector('.effect-level__value');

@@ -1,11 +1,10 @@
 import {Comments, Likes, DESCRIPTIONS} from './const.js';
 
+const isEscKey = (evt) => evt.key === 'Escape';
 
-function isComformLength(checkedText, maxLength){
-  return checkedText.length <= maxLength;
-}
+const isComformLength = (checkedText, maxLength) => checkedText.length <= maxLength;
 
-function getRandomPositiveInteger (a, b) {
+const getRandomPositiveInteger = (a, b) => {
   if (a < 0 || b < 0) {
     return NaN;
   }
@@ -13,11 +12,10 @@ function getRandomPositiveInteger (a, b) {
   const upper = Math.floor(Math.max(a, b));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
-}
+};
 
-function getGenerateArrayObjects(quanty){
+const getGenerateArrayObjects = (quanty) => {
   const arrObj = [];
-
   for (let i = 1; i <= quanty; i++){
     arrObj.push({
       id: i,
@@ -29,6 +27,6 @@ function getGenerateArrayObjects(quanty){
   }
 
   return arrObj;
-}
+};
 
-export {isComformLength, getGenerateArrayObjects};
+export {isComformLength, getGenerateArrayObjects, isEscKey};
