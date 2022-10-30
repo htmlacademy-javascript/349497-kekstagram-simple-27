@@ -1,5 +1,6 @@
 export const body = document.querySelector('body');
 export const uploadForm = body.querySelector('#upload-select-image');
+export const submitButton = uploadForm.querySelector('#upload-submit');
 export const uploadFileInput = uploadForm.querySelector('#upload-file');
 export const imgUploadPopup = uploadForm.querySelector('.img-upload__overlay');
 export const closePopupBtn = body.querySelector('#upload-cancel');
