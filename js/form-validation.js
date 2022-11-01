@@ -1,4 +1,5 @@
 import { CommentLength } from './const.js';
+import { uploadForm, commentText } from './form-dom-element.js';
 
 
 function checkLengthComment(text){
@@ -8,7 +9,7 @@ function checkLengthComment(text){
   return true;
 }
 
-function validationComment(uploadForm, commentText){
+function validationComment(){
   if (!checkLengthComment(commentText.value)){
     commentText.setCustomValidity(`Комментарий должен быть длинее ${CommentLength.MIN} символов и короче ${CommentLength.MAX}. Сейчас: ${commentText.value.length}`);
     uploadForm.reportValidity();
