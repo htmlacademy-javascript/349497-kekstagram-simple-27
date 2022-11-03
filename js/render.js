@@ -17,7 +17,7 @@ const renderPictures = (json) => {
 };
 
 function errorLoad(){
-  showMessage('error', getImages, 'Ошибка загрузки фотографий');
+  showMessage('error', getImages, 'Ошибка: фото не загружены (((', '🔄 Обновить');
 }
 
 function getImages(){

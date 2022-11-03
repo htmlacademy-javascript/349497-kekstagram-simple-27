@@ -1,5 +1,5 @@
 import { Scale } from './const.js';
-import { imgUploadPreview, scaleValue, scaleBiggerBtn} from './form-dom-element.js';
+import { imgUploadPreview, scaleValue, scaleBiggerBtn } from './form-dom-element.js';
 
 
 const onScaleControl = (evt) => {

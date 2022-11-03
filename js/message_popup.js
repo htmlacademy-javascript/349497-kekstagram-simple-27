@@ -27,7 +27,6 @@ function removePopup(){
   body.removeChild(popup);
 }
 
-
 function showMessage(typeMessage, listenerFunc, title, textButton){
   const messageFragment = document.querySelector(`#${typeMessage}`).content.cloneNode(true);
   const messageButton = messageFragment.querySelector(`.${typeMessage}__button`);
