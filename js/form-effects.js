@@ -11,6 +11,7 @@ const setDefaultEffect = () => {
     effectSlider.noUiSlider.destroy();
   }
   setClassEffectImg('none');
+  effectSlider.parentElement.setAttribute('hidden', 'true');
   imgUploadPreview.style.filter = '';
   defaultEffect.checked = true;
 };
@@ -23,7 +24,7 @@ const setSlider = ({filter, range, start, step, unit}) => {
     start: start,
     step: step,
   });
-
+  effectSlider.parentElement.removeAttribute('hidden');
   effectSlider.noUiSlider.on('update', (values, handle) => {
     effectSliderValue.value = values[handle];
     imgUploadPreview.style.filter = '';

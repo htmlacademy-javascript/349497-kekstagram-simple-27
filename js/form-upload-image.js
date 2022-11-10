@@ -1,10 +1,10 @@
 import {
   closePopupBtn, scaleControls, effectsList, commentText, uploadForm, imgUploadPopup, body, uploadFileInput, imgUploadPreview, submitButton
 } from './form-dom-element.js';
-import {onScaleControl} from './form-scale.js';
-import {validationComment} from './form-validation.js';
-import {isEscKey} from './util.js';
-import {onChangeEffect, setDefaultEffect} from './form-effects.js';
+import { onScaleControl } from './form-scale.js';
+import { validationComment } from './form-validation.js';
+import { isEscKey} from './util.js';
+import { onChangeEffect, setDefaultEffect } from './form-effects.js';
 import { sendData } from './requests.js';
 import { showMessage } from './message_popup.js';
 
@@ -55,6 +55,7 @@ function onChangeFileInput(){
 function onClickFileInput(evt){
   if (uploadFileInput.value === ''){
     uploadFileInput.addEventListener('change', onChangeFileInput, {once: true});
+    setDefaultEffect();
     return;
   }
   evt.preventDefault();
@@ -72,13 +73,17 @@ function sendUploadForm(evt){
   }
   submitButton.setAttribute('disabled', 'true');
   const url = uploadForm.attributes['action'].value;
-  sendData(()=>{
-    closePopup();
-    showMessage('success');
-  }, ()=>{
-    closePopup(true);
-    showMessage('error');
-  }, url, new FormData(evt.target));
+  sendData(
+    ()=>{
+      closePopup();
+      showMessage('success');
+    },
+    ()=>{
+      closePopup(true);
+      showMessage('error');
+    },
+    url,
+    new FormData(evt.target));
 }
 
 uploadFileInput.addEventListener('click', onClickFileInput);

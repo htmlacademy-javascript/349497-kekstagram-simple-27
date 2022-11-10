@@ -10,4 +10,3 @@ export const Effects = {
 };
 
 export const URL_IMAGES_DATASET = 'https://27.javascript.pages.academy/kekstagram-simple/data';
-// export const URL_IMAGES_DATASET = 'http://127.0.0.1/123';
