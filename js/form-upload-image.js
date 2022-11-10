@@ -55,6 +55,7 @@ function onChangeFileInput(){
 function onClickFileInput(evt){
   if (uploadFileInput.value === ''){
     uploadFileInput.addEventListener('change', onChangeFileInput, {once: true});
+    setDefaultEffect();
     return;
   }
   evt.preventDefault();
