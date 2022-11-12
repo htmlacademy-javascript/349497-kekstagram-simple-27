@@ -1,22 +1,17 @@
 import { CommentLength } from './const.js';
-import { uploadForm, commentText } from './form-dom-element.js';
+import { uploadFormElement, commentTextElement } from './form-dom-element.js';
 
 
-const checkLengthComment = (text) => {
-  if (text.length < CommentLength.MIN || text.length > CommentLength.MAX){
+const checkLengthComment = (text) => text.length >= CommentLength.MIN && text.length <= CommentLength.MAX;
+
+const validateComment = () => {
+  if (!checkLengthComment(commentTextElement.value)){
+    commentTextElement.setCustomValidity(`Комментарий должен быть длинее ${CommentLength.MIN} символов и короче ${CommentLength.MAX}. Сейчас: ${commentTextElement.value.length}`);
+    uploadFormElement.reportValidity();
     return false;
   }
+  commentTextElement.setCustomValidity('');
   return true;
 };
 
-const validationComment = () => {
-  if (!checkLengthComment(commentText.value)){
-    commentText.setCustomValidity(`Комментарий должен быть длинее ${CommentLength.MIN} символов и короче ${CommentLength.MAX}. Сейчас: ${commentText.value.length}`);
-    uploadForm.reportValidity();
-    return false;
-  }
-  commentText.setCustomValidity('');
-  return true;
-};
-
-export {validationComment};
+export {validateComment};

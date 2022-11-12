@@ -1,6 +1,6 @@
 import { getDataJson } from './requests.js';
 import { URL_IMAGES_DATASET } from './const.js';
-import { showMessage } from './message_popup.js';
+import { showMessage } from './message-popup.js';
 
 
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -24,4 +24,4 @@ function getImages(){
   getDataJson(renderPictures, errorLoad, URL_IMAGES_DATASET);
 }
 
-getImages();
+export { getImages };

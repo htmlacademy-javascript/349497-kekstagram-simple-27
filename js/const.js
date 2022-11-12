@@ -1,4 +1,3 @@
-export const GENERATE_OBJECTS = 25;
 export const Scale = {MIN: 25, MAX: 100, STEP:25};
 export const CommentLength = {MIN:20, MAX: 140};
 export const Effects = {

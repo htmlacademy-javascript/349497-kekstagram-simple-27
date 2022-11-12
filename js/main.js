@@ -1,3 +1,6 @@
-import './render.js';
-import './form-upload-image.js';
-import './message_popup.js';
+import { uploadFileInputElement } from './form-dom-element.js';
+import { getImages } from './render.js';
+import { onClickFileInput } from './form-upload-image.js';
+
+getImages();
+uploadFileInputElement.addEventListener('click', onClickFileInput);
