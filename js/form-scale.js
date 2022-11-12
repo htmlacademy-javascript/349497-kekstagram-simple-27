@@ -1,11 +1,11 @@
 import { Scale } from './const.js';
-import { imgUploadPreview, scaleValue, scaleBiggerBtn } from './form-dom-element.js';
+import { imgUploadPreviewElement, scaleValueElement, scaleBiggerBtnElement } from './form-dom-element.js';
 
 
 const onScaleControl = (evt) => {
-  let value = parseInt(scaleValue.value, 10);
+  let value = parseInt(scaleValueElement.value, 10);
   if (evt.target.matches('button[type="button"]')){
-    if (evt.target === scaleBiggerBtn){
+    if (evt.target === scaleBiggerBtnElement){
       if (value < Scale.MAX){
         value += Scale.STEP;
       }
@@ -14,8 +14,8 @@ const onScaleControl = (evt) => {
         value -= Scale.STEP;
       }
     }
-    imgUploadPreview.style.transform = `scale(${value / 100})`;
-    scaleValue.value = `${value}%`;
+    imgUploadPreviewElement.style.transform = `scale(${value / 100})`;
+    scaleValueElement.value = `${value}%`;
   }
 };
 

@@ -1,44 +1,49 @@
-import { imgUploadPreview, effectsList, effectSlider, effectSliderValue, defaultEffect } from './form-dom-element.js';
+import { imgUploadPreviewElement, effectsListElement, effectSliderElement, effectSliderValueElement, defaultEffectElement } from './form-dom-element.js';
 import { Effects } from './const.js';
 
 const setClassEffectImg = (effect) =>{
-  imgUploadPreview.classList.remove(...imgUploadPreview.classList);
-  imgUploadPreview.classList.add(`effects__preview--${effect}`);
+  for (const element of imgUploadPreviewElement.classList){
+    if (element.startsWith('effects__preview--')){
+      imgUploadPreviewElement.classList.replace(element, `effects__preview--${effect}`);
+      return;
+    }
+  }
+  imgUploadPreviewElement.classList.add(`effects__preview--${effect}`);
 };
 
 const setDefaultEffect = () => {
-  if (effectSlider.noUiSlider !== undefined){
-    effectSlider.noUiSlider.destroy();
+  if (effectSliderElement.noUiSlider !== undefined){
+    effectSliderElement.noUiSlider.destroy();
   }
   setClassEffectImg('none');
-  effectSlider.parentElement.setAttribute('hidden', 'true');
-  imgUploadPreview.style.filter = '';
-  defaultEffect.checked = true;
+  effectSliderElement.parentElement.setAttribute('hidden', 'true');
+  imgUploadPreviewElement.style.filter = '';
+  defaultEffectElement.checked = true;
 };
 
 const setSlider = ({filter, range, start, step, unit}) => {
-  if (effectSlider.noUiSlider !== undefined){ effectSlider.noUiSlider.destroy();}
-  noUiSlider.create(effectSlider, {
+  if (effectSliderElement.noUiSlider !== undefined){ effectSliderElement.noUiSlider.destroy();}
+  noUiSlider.create(effectSliderElement, {
     connect: true,
     range: range,
     start: start,
     step: step,
   });
-  effectSlider.parentElement.removeAttribute('hidden');
-  effectSlider.noUiSlider.on('update', (values, handle) => {
-    effectSliderValue.value = values[handle];
-    imgUploadPreview.style.filter = '';
+  effectSliderElement.parentElement.removeAttribute('hidden');
+  effectSliderElement.noUiSlider.on('update', (values, handle) => {
+    effectSliderValueElement.value = values[handle];
+    imgUploadPreviewElement.style.filter = '';
 
     if (unit === undefined){
-      imgUploadPreview.style.filter = `${filter}(${effectSliderValue.value})`;
+      imgUploadPreviewElement.style.filter = `${filter}(${effectSliderValueElement.value})`;
       return;
     }
-    imgUploadPreview.style.filter = `${filter}(${effectSliderValue.value}${unit})`;
+    imgUploadPreviewElement.style.filter = `${filter}(${effectSliderValueElement.value}${unit})`;
   });
 };
 
 const onChangeEffect = () => {
-  const effect = effectsList.querySelector('[name="effect"]:checked').value;
+  const effect = effectsListElement.querySelector('[name="effect"]:checked').value;
   setClassEffectImg(effect);
   if (effect === 'none'){
     setDefaultEffect();

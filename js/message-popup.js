@@ -1,33 +1,24 @@
 import { isEscKey } from './util.js';
+import { bodyElement } from './form-dom-element.js';
 
-function onEscKey(evt){
+const onEscKey = (evt) => {
   if (isEscKey(evt)){
     evt.preventDefault();
     removePopup();
   }
-}
+};
 
-function onClickOutPopup(evt){
+const onClickOutPopup = (evt) => {
   if (evt.target.tagName === 'SECTION'){
     removePopup();
   }
-}
+};
 
 function onButtonPopup(){
   removePopup();
 }
 
-function removePopup(){
-  document.removeEventListener('keydown', onEscKey);
-  const body = document.querySelector('body');
-  let popup = body.querySelector('.error');
-  if (!popup){
-    popup = body.querySelector('.success');
-  }
-  body.removeChild(popup);
-}
-
-function showMessage(typeMessage, listenerFunc, title, textButton){
+const showMessage = (typeMessage, listenerFunc, title, textButton) => {
   const messageFragment = document.querySelector(`#${typeMessage}`).content.cloneNode(true);
   const messageButton = messageFragment.querySelector(`.${typeMessage}__button`);
   if (listenerFunc){
@@ -42,10 +33,17 @@ function showMessage(typeMessage, listenerFunc, title, textButton){
   messageFragment.querySelector('section').addEventListener('click', onClickOutPopup);
   messageButton.addEventListener('click', onButtonPopup);
 
-  const body = document.querySelector('body');
   document.addEventListener('keydown', onEscKey);
-  body.append(messageFragment);
-}
+  bodyElement.append(messageFragment);
+};
 
+function removePopup(){
+  document.removeEventListener('keydown', onEscKey);
+  let popupElement = bodyElement.querySelector('.error');
+  if (!popupElement){
+    popupElement = bodyElement.querySelector('.success');
+  }
+  bodyElement.removeChild(popupElement);
+}
 
 export { showMessage };
